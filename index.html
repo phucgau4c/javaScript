@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>Example</h1>
+        <button onclick="get()">Get</button>
+        <button onclick="post()">post</button>
+        <button onclick="deletes()">Delete</button>
+        <button onclick="put()">Put</button>
+        <button onclick="patch()">Patch</button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        
+        function getdata() {
+            axios.get("http://localhost:3000/posts")
+                .then(function(res) {
+                    console.log(res.data);
+                })
+                .catch(er => console.log(er));
+        }
+        
+        function post() {
+            axios
+                .post("http://localhost:3000/posts", {
+                    id: 3,
+                    title: "json-server"
+                })
+                .then(function(res) {
+                    console.log(res.data);
+                })
+                .catch(er => console.log(er));
+        }
+        function deletes() {
+            axios.delete('http://localhost:3000/posts/1')
+            .then(res => console.log(res))
+            .catch(err => console.log(err.res));
+        }
+        function put() {
+            axios
+            .put('http://localhost:3000/posts/1',{
+                id: 1,
+                title: "the face"
+            })
+            .then(res => console.log(res));
+        }
+        function patch() {
+            axios.patch('http://localhost:3000/posts/3', {
+                title: "none"
+            })
+        }
+    </script>
+    </body>
+</html>
